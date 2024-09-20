@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        header, footer {
+            background-color: #004085;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #004085;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .foro-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Testimonios */
+        .testimonios {
+            flex: 1;
+        }
+
+        .testimonio {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonio h4 {
+            color: #004085;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .testimonio p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Calendario */
+        .calendario {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        table th {
+            background-color: #004085;
+            color: white;
+        }
+
+        /* Publicaciones del foro */
+        .publicaciones {
+            margin-top: 40px;
+        }
+
+        .publicacion {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .publicacion h4 {
+            color: #004085;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .publicacion p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-content p {
+            margin: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .footer-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Simulación de calendario */
+        .simulacion-calendario {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .simulacion-calendario th, .simulacion-calendario td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .simulacion-calendario th {
+            background-color: #004085;
+            color: white;
+        }
+
+        .simulacion-calendario td {
+            background-color: #f4f7fa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio" style="width: 100px;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('admin_dashboard') }}" class="login-btn">Volver</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <section class="foro-section">
+            <!-- Testimonios -->
+            <div class="testimonios">
+                <h2>Testimonios</h2>
+                <div class="testimonio">
+                    <h4>Juan Pérez</h4>
+                    <p>"La plataforma ha sido increíble para el progreso auditivo de mi hijo. Gracias al equipo de AB Colegio por el apoyo."</p>
+                </div>
+                <div class="testimonio">
+                    <h4>María López</h4>
+                    <p>"Me siento más segura con el uso del procesador de implante coclear gracias a los módulos de capacitación."</p>
+                </div>
+                <div class="testimonio">
+                    <h4>Pedro Sánchez</h4>
+                    <p>"El contenido de rehabilitación auditiva ha sido clave para la mejora de mi vida diaria."</p>
+                </div>
+            </div>
+
+            <!-- Calendario -->
+            <div class="calendario">
+                <h2>Fechas Importantes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Evento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10 Octubre 2024</td>
+                            <td>Sesión de Capacitación - Procesador Marvel</td>
+                        </tr>
+                        <tr>
+                            <td>20 Noviembre 2024</td>
+                            <td>Webinar: Rehabilitación Psicosocial</td>
+                        </tr>
+                        <tr>
+                            <td>05 Diciembre 2024</td>
+                            <td>Revisión de Avances - Curso de Rehab</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Simulación de calendario -->
+                <h2>Calendario</h2>
+                <table class="simulacion-calendario">
+                    <thead>
+                        <tr>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                            <th>Dom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Publicaciones de foros -->
+        <section class="publicaciones">
+            <h2>Publicaciones Recientes del Foro</h2>
+            <div class="publicacion">
+                <h4>Problemas con el Procesador Naida</h4>
+                <p>Publicado por Ana García: "He tenido dificultades con la conexión del procesador Naida, ¿alguien más ha tenido este problema?"</p>
+            </div>
+            <div class="publicacion">
+                <h4>Recomendaciones para la rehabilitación auditiva</h4>
+                <p>Publicado por Carlos Gómez: "¿Qué ejercicios recomiendan para mejorar el reconocimiento de sonidos con el implante?"</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+                <li>
+                    <!-- Enlace con advertencia -->
+                    <a href="{{ url_for('contacto') }}" onclick="return confirm('Si continuas, se cerrará tu sesión. ¿Deseas proceder?')">Contáctenos</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

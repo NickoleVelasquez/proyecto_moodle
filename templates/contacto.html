@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="{{ url_for('catalogo') }}">Cursos</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('login') }}" class="login-btn">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección de contacto -->
+    <main>
+        <section class="contacto">
+            <h1>Contáctanos</h1>
+            <p>Si tienes alguna pregunta o deseas más información, por favor completa el siguiente formulario.</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+
+            <!-- Mensaje de éxito oculto por defecto -->
+            <p id="success-message" style="display: none; color: green; margin-top: 20px;">Enviado con éxito</p>
+
+            <!-- Enlace al archivo JavaScript -->
+            <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+
+            <!-- Sección de redes sociales -->
+            <div class="social-media">
+                <h2>Síguenos en nuestras redes sociales</h2>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><img src="{{ url_for('static', filename='facebook.png') }}" alt="Facebook"></a>
+                    <a href="https://instagram.com" target="_blank"><img src="{{ url_for('static', filename='ig.png') }}" alt="Instagram"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

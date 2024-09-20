@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .team-section {
+            padding: 40px 20px;
+            background-color: #f9f9f9; /* Fondo claro para la sección */
+            text-align: center;
+        }
+
+        .team-section h2 {
+            margin-bottom: 30px;
+            color: #004085; /* Color del encabezado */
+        }
+
+        .team-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacio entre las tarjetas */
+            flex-wrap: wrap; /* Para que se adapten en pantallas más pequeñas */
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px; /* Ancho fijo de las tarjetas */
+            transition: transform 0.3s; /* Efecto de hover */
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px); /* Levantar la tarjeta al pasar el ratón */
+        }
+
+        .team-card img {
+            width: 100%;
+            border-radius: 50%; /* Imagen redonda */
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            margin: 10px 0;
+            color: #333; /* Color del nombre */
+        }
+
+        .team-card p {
+            color: #666; /* Color del texto de la descripción */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="{{ url_for('catalogo') }}">Cursos</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('login') }}" class="login-btn">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: url('{{ url_for('static', filename='bannerM.jpg') }}');">
+            <div class="hero-content">
+                <h1>Bienvenido a la Plataforma de Capacitación</h1>
+                <p>En AB COLEGIO enseñamos a nuestros usuarios y sus familiares a utilizar el dispositivo de implante coclear y brindamos herramientas para la rehabilitación auditiva y psicosocial.</p>
+                <a href="{{ url_for('catalogo') }}" class="cta-btn">Explorar Cursos</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>¿Por qué elegir nuestra plataforma?</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='PROCESADOR.jpg') }}" alt="Cursos Actualizados">
+                    <h3>PROCESADOR</h3>
+                    <p>Aprende a utilizar y maximizar el potencial de tu implante coclear con nuestro equipo de expertos.</p>
+                </div>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='REHAB.jpg') }}" alt="Soporte 24/7">
+                    <h3>REHAB</h3>
+                    <p>Desarrolla habilidades auditivas y promueve la detección, discriminación, reconocimiento y comprensión de los estímulos auditivos.</p>
+                </div>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='psicosocial.jpeg') }}" alt="Certificaciones">
+                    <h3>PSICOSOCIAL</h3>
+                    <p>Nuestros programas de rehabilitación psicosocial buscan brindar apoyo en la inclusión de nuestros usuarios en la vida cotidiana.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección del equipo -->
+<section class="team-section">
+    <h2>Conoce a Nuestro Equipo</h2>
+    <div class="team-cards">
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='persona1.jpg') }}" alt="Miembro 1">
+            <h3>Sigrid</h3>
+            <p>Especialista en rehabilitación auditiva y psicosocial.</p>
+        </div>
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='deisy.jpg') }}" alt="Miembro 2">
+            <h3>Deisy</h3>
+            <p>Experta en producto implantes coclear.</p>
+        </div>
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='persona2.jpg') }}" alt="Miembro 3">
+            <h3>Jovana</h3>
+            <p>Encargada de orientar a los usuarios y sus familias acerca de los recursos educativos ofrecidos por AB Colegio.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .team-section {
+        padding: 40px 20px;
+        background-color: #f9f9f9; /* Fondo claro para la sección */
+        text-align: center;
+    }
+
+    .team-section h2 {
+        margin-bottom: 30px;
+        color: #004085; /* Color del encabezado */
+    }
+
+    .team-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Espacio entre las tarjetas */
+        flex-wrap: wrap; /* Para que se adapten en pantallas más pequeñas */
+    }
+
+    .team-card {
+        background: #ffffff;
+        border-radius: 12px; /* Bordes más redondeados */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px; /* Ancho fijo de las tarjetas */
+        transition: transform 0.3s, box-shadow 0.3s; /* Efecto de hover */
+        text-align: center; /* Centrar texto */
+        overflow: hidden; /* Para evitar desbordamiento */
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px); /* Levantar la tarjeta al pasar el ratón */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    }
+
+    .team-card img {
+        width: 100%;
+        height: 180px; /* Altura fija para mantener uniformidad */
+        border-radius: 12px; /* Bordes redondeados en la imagen */
+        object-fit: cover; /* Mantener la relación de aspecto */
+        margin-bottom: 15px;
+    }
+
+    .team-card h3 {
+        margin: 10px 0;
+        color: #333; /* Color del nombre */
+    }
+
+    .team-card p {
+        color: #666; /* Color del texto de la descripción */
+        font-size: 0.9em; /* Tamaño de fuente un poco más pequeño */
+    }
+</style>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

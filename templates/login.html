@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Fondo suave */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 400px; /* Ancho máximo */
+            margin: 60px auto; /* Centramos el contenedor */
+            background: white; /* Fondo blanco */
+            padding: 20px;
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #004085; /* Azul oscuro para el encabezado */
+        }
+
+        .login-container label {
+            display: block;
+            margin-top: 10px;
+            color: #333; /* Color del texto */
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc; /* Borde sutil */
+            border-radius: 4px; /* Bordes redondeados */
+            box-sizing: border-box;
+            transition: border-color 0.3s; /* Transición suave para el borde */
+        }
+
+        .login-container input:focus {
+            border-color: #004085; /* Color del borde al enfocar */
+            outline: none; /* Sin contorno */
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #004085; /* Color azul oscuro del botón */
+            color: white;
+            border: none;
+            border-radius: 4px; /* Bordes redondeados */
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transición suave para el fondo */
+        }
+
+        .login-container button:hover {
+            background-color: #003057; /* Azul más oscuro al pasar el ratón */
+        }
+
+        .login-container p {
+            text-align: center;
+            margin-top: 15px; /* Espacio entre el botón y el texto */
+        }
+
+        .login-container a {
+            color: #004085; /* Azul oscuro para el enlace */
+            text-decoration: none; /* Sin subrayado */
+        }
+
+        .login-container a:hover {
+            text-decoration: underline; /* Subrayado al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="{{ url_for('catalogo') }}">Cursos</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('login') }}" class="login-btn">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Iniciar sesión</h2>
+            <form method="POST">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>¿No estás registrado? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+

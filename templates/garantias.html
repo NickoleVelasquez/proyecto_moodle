@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantía - Curso Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #004085;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        header .logo img {
+            width: 120px;
+            margin-bottom: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #004085;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #0062cc;
+        }
+
+        /* Buscador */
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            width: 50%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .course-dashboard {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .course-header h2 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .course-header p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .course-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .course-module {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            min-height: 100px;
+        }
+
+        .course-module img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-right: 20px;
+        }
+
+        .course-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .course-module h3 {
+            font-size: 1.2em;
+            color: #004085;
+            margin: 0;
+        }
+
+        .course-progress {
+            margin-top: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .course-progress-bar {
+            height: 20px; /* Aumentar la altura para que el texto se vea mejor */
+            background-color: #004085;
+            position: relative;
+        }
+
+        .percentage-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Centrar horizontalmente */
+            color: white;
+            font-weight: bold;
+            line-height: 20px; /* Debe coincidir con la altura de la barra para centrar verticalmente */
+            font-size: 0.9em; /* Ajustar el tamaño del texto si es necesario */
+            pointer-events: none;
+}
+
+        .course-module a {
+            padding: 10px 20px; /* Asegurando un tamaño uniforme */
+            background-color: #004085;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            min-width: 120px; /* Asegurando el mismo ancho */
+            text-align: center; /* Centrar el texto del botón */
+        }
+
+        .course-module a:hover {
+            background-color: #0062cc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004085;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('admin_dashboard') }}" class="back-btn">Volver a inicio</a></li>
+                <li><a href="{{ url_for('logout') }}" class="login-btn">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-dashboard">
+            <div class="course-header">
+                <h2>Validación de Garantía</h2>
+                <p>Explora los módulos del curso de garantía para conocer mejor tu implante coclear y cómo gestionar la garantía de tus dispositivos.</p>
+            </div>
+
+            <!-- Buscador de Cursos -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar curso por nombre..." onkeyup="filterCourses()">
+            </div>
+
+            <div class="course-modules" id="courseContainer">
+                <!-- Módulo 1 -->
+                <div class="course-module" data-name="Cómo conectarse de forma inalámbrica con Marvel CI y sus dispositivos Bluetooth favoritos">
+                    <img src="{{ url_for('static', filename='mod1.png') }}" alt="Cómo conectarse de forma inalámbrica con Marvel CI y sus dispositivos Bluetooth favoritos">
+                    <div class="course-info">
+                        <h3>Cómo conectarse de forma inalámbrica con Marvel CI y sus dispositivos Bluetooth favoritos</h3>
+                        <div class="course-progress">
+                            <div class="course-progress-bar" style="width: 100%;"></div>
+                            <span class="percentage-text">100%</span>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('modulo1') }}">Ver módulo</a>
+                </div>
+                <!-- Módulo 2 -->
+                <div class="course-module" data-name="Cómo usar el modo avión para deshabilitar Bluetooth">
+                    <img src="{{ url_for('static', filename='mod1.png') }}" alt="Cómo usar el modo avión para deshabilitar Bluetooth">
+                    <div class="course-info">
+                        <h3>Cómo usar el modo avión para deshabilitar Bluetooth</h3>
+                        <div class="course-progress">
+                            <div class="course-progress-bar" style="width: 50%;"></div>
+                            <span class="percentage-text">50%</span>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('modulo2') }}">Ver módulo</a>
+                </div>
+                <!-- Módulo 3 -->
+                <div class="course-module" data-name="Cómo transmitir bluetooth con dos dispositivos, el audífono Marvel CI y el audífono Link M, o dos Marvel CI">
+                    <img src="{{ url_for('static', filename='mod1.png') }}" alt="Cómo transmitir bluetooth con dos dispositivos, el audífono Marvel CI y el audífono Link M, o dos Marvel CI">
+                    <div class="course-info">
+                        <h3>Cómo transmitir bluetooth con dos dispositivos, el audífono Marvel CI y el audífono Link M, o dos Marvel CI</h3>
+                        <div class="course-progress">
+                            <div class="course-progress-bar" style="width: 30%;"></div>
+                            <span class="percentage-text">30%</span>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('modulo3') }}">Ver módulo</a>
+                </div>
+                <!-- Módulo 4 -->
+                <div class="course-module" data-name="Cómo solucionar problemas de calidad de sonido con Marvel CI">
+                    <img src="{{ url_for('static', filename='mod1.png') }}" alt="Cómo solucionar problemas de calidad de sonido con Marvel CI">
+                    <div class="course-info">
+                        <h3>Cómo solucionar problemas de calidad de sonido con Marvel CI</h3>
+                        <div class="course-progress">
+                            <div class="course-progress-bar" style="width: 80%;"></div>
+                            <span class="percentage-text">80%</span>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('modulo4') }}">Ver módulo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+                <li>
+                    <a href="{{ url_for('contacto') }}" onclick="return confirm('Si continuas, se cerrará tu sesión. ¿Deseas proceder?')">Contáctenos</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        function filterCourses() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const courseModules = document.querySelectorAll('.course-module');
+
+            courseModules.forEach(module => {
+                const courseName = module.getAttribute('data-name').toLowerCase();
+                if (courseName.includes(input)) {
+                    module.style.display = '';
+                } else {
+                    module.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicosocial - Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .psicosocial-dashboard {
+            padding: 60px 20px;
+            background-color: #ffffff;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-title {
+            margin-bottom: 20px;
+            color: #004085;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dashboard-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: #004085;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .description {
+            margin: 20px 0;
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .material-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .material-card {
+            background: linear-gradient(135deg, #e6f7ff, #ffffff);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .material-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .material-card h3 {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .material-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .material-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #004085;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            margin-top: auto; /* Push to the bottom */
+        }
+
+        .material-card a:hover {
+            background-color: #0062cc;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-title {
+                font-size: 2em;
+            }
+
+            .material-card h3 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logoAB.JPG') }}" alt="Logo AB Colegio" style="width: 100px;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user_dashboard') }}" class="login-btn">Volver</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="psicosocial-dashboard">
+            <h2 class="dashboard-title">Programa Psicosocial</h2>
+            <p class="description">Nuestro programa de rehabilitación psicosocial busca brindar apoyo en la inclusión de nuestros usuarios en la vida cotidiana. Aquí encontrarás materiales y recursos diseñados para fomentar el bienestar emocional y social.</p>
+            <div class="material-cards">
+                <div class="material-card">
+                    <h3>Aventura auditiva</h3>
+                    <p>a. Este diario es un lugar especial para que usted pueda documentar el viaje de su hijo al mundo de los sonidos. .</p>
+                    <a href="{{ url_for('static', filename='aventura.pdf') }}" target="_blank">Ver PDF</a>
+                </div>
+                <div class="material-card">
+                    <h3> ¿Qué es un implante coclear</h3>
+                    <p>Un implante coclear es un dispositivo electrónico diseñado para proporcionar una percepción mejorada del sonido.</p>
+                    <a href="{{ url_for('static', filename='quees.pdf') }}" target="_blank">Ver PDF</a>
+                </div>
+                <div class="material-card">
+                    <h3>Leo y su implante coclear</h3>
+                    <p>Explora ficha animada.</p>
+                    <a href="{{ url_for('static', filename='leo.pdf') }}" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="https://www.advancedbionics.com/latam/es/footer/legal/privacy-policy.html?kuid=d48f2e48-3a59-463c-98a6-e33cbbfc2f98&kref=1woCaTDsmUlF">Política de Privacidad</a></li>
+                <li>
+                    <a href="{{ url_for('contacto') }}" onclick="return confirm('Si continuas, se cerrará tu sesión. ¿Deseas proceder?')">Contáctenos</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

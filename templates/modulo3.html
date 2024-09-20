@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Curso - Plataforma de Capacitación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #004085;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .course-container {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-validar-garantia, .btn-volver {
+            padding: 15px 30px;
+            background-color: #004085;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-validar-garantia:hover, .btn-volver:hover {
+            background-color: #0062cc;
+        }
+
+        .btn-volver {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .test-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #004085;
+            border-radius: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .test-container h3 {
+            color: #004085;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004085;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ver Curso - Plataforma de Capacitación</h1>
+    </header>
+
+    <main class="course-container">
+        <h2>Cómo transmitir bluetooth con dos dispositivos, el audífono Marvel CI y el audífono Link M, o dos Marvel CI</h2>
+        <iframe src="https://www.youtube.com/embed/6qRWHKpyrJ8" allowfullscreen></iframe>
+        
+        <!-- Botón para Validar Garantía -->
+        <button class="btn-validar-garantia" onclick="mostrarTest()">Validar Garantía</button>
+
+        <!-- Botón para Volver al listado de cursos -->
+        <a href="/garantias" class="btn-volver">Volver al Listado de Cursos</a>
+
+        <!-- Test -->
+        <div class="test-container" id="test-container">
+            <h3>Test: Cómo conectarse de forma inalámbrica con Marvel CI</h3>
+            <form id="test-form">
+                <p>1. ¿Qué dispositivo se usa para conectar de forma inalámbrica?</p>
+                <input type="radio" name="question1" value="correcto"> Marvel CI<br>
+                <input type="radio" name="question1" value="incorrecto"> Naida Q70<br>
+
+                <p>2. ¿Cómo se activa la conectividad?</p>
+                <input type="radio" name="question2" value="correcto"> A través de la aplicación de teléfono<br>
+                <input type="radio" name="question2" value="incorrecto"> Usando un cable<br>
+
+                <p>3. ¿Qué beneficio clave se menciona sobre la conexión inalámbrica?</p>
+                <input type="radio" name="question3" value="correcto"> Mayor comodidad y movilidad<br>
+                <input type="radio" name="question3" value="incorrecto"> Mejor calidad de sonido<br>
+
+                <br>
+                <button type="button" onclick="verificarRespuestas()">Enviar Respuestas</button>
+            </form>
+
+            <!-- Resultado del test -->
+            <div id="test-resultado"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Plataforma de Capacitación. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Función para mostrar el test
+        function mostrarTest() {
+            document.getElementById('test-container').style.display = 'block';
+        }
+
+        // Función para generar un código de garantía único
+        function generarCodigoGarantia() {
+            var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            var codigo = '';
+            for (var i = 0; i < 10; i++) {
+                codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return codigo;
+        }
+
+        // Función para verificar respuestas y generar el código de garantía
+        function verificarRespuestas() {
+            var correctas = 0;
+
+            var q1 = document.querySelector('input[name="question1"]:checked');
+            var q2 = document.querySelector('input[name="question2"]:checked');
+            var q3 = document.querySelector('input[name="question3"]:checked');
+
+            if (q1 && q1.value === 'correcto') correctas++;
+            if (q2 && q2.value === 'correcto') correctas++;
+            if (q3 && q3.value === 'correcto') correctas++;
+
+            var resultado = document.getElementById('test-resultado');
+            if (correctas === 3) {
+                var codigo = generarCodigoGarantia();
+                var fechaVencimiento = new Date();
+                fechaVencimiento.setMonth(fechaVencimiento.getMonth() + 1);
+
+                var mensajeCodigo = `
+                    <p style="color: green;">¡Felicidades! Has pasado el test.</p>
+                    <p><strong>Código de Garantía:</strong> ${codigo}</p>
+                    <p><strong>Fecha de Vencimiento:</strong> ${fechaVencimiento.toLocaleDateString()}</p>
+                    <p style="color: red;">Recuerda que este código tiene una validez de 1 mes. ¡Asegúrate de usarlo antes de que expire!</p>
+                `;
+                resultado.innerHTML = mensajeCodigo;
+            } else {
+                resultado.innerHTML = '<p style="color: red;">Lo siento, no has pasado el test. Inténtalo de nuevo.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
+

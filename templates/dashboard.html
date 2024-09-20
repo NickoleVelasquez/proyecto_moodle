@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard de Capacitación</h1>
+    <ul>
+        {% for curso in cursos %}
+        <li>{{ curso.nombre }} - {{ curso.descripcion }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+</body>
+</html>
